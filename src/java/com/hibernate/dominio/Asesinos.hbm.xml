@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/08/2016 21:16:44 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.dominio.Asesinos" table="asesinos" schema="public" optimistic-lock="version">
+        <id name="idasesino" type="int">
+            <column name="idasesino" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tipoasesinato" class="com.hibernate.dominio.Tipoasesinato" fetch="select">
+            <column name="idasesinato" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <property name="personasasesinadas" type="java.lang.Integer">
+            <column name="personasasesinadas" />
+        </property>
+        
+        <filter name="asesinosFilter" condition="personasasesinadas >= :maxcantasesinatos"></filter>
+        
+        
+    </class>
+    
+    <filter-def name="asesinosFilter">
+        <filter-param name="maxcantasesinatos" type="java.lang.Integer"/>
+    </filter-def>  
+    
+</hibernate-mapping>

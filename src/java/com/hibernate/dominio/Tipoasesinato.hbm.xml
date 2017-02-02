@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/08/2016 21:16:44 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.dominio.Tipoasesinato" table="tipoasesinato" schema="public" optimistic-lock="version">
+        <id name="idasesinato" type="int">
+            <column name="idasesinato" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoasesinato" type="string">
+            <column name="tipoasesinato" />
+        </property>
+        <set name="asesinoses" table="asesinos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idasesinato" />
+            </key>
+            <one-to-many class="com.hibernate.dominio.Asesinos" />
+        </set>
+    </class>
+</hibernate-mapping>

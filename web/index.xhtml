@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <center>
+            <p:graphicImage url="/images/asesino.jpg"/>
+            </center>
+            <br></br>
+            <center>
+            <p:outputLabel value="Numero de asesinatos: "/>
+            <br></br>
+            <p:inputText value="#{personaMB.cantidadasesinatos}">
+                <p:ajax listener="#{personaMB.llenarTablaEdad}" event="change"  update="tablaEdad"/>
+            </p:inputText>
+             </center>
+            <br></br><br></br><br></br>
+            <p:dataTable id="tablaEdad" var="persona" value="#{personaMB.personaEdadList}">
+                <p:column headerText="Nombres">
+                    <p:outputLabel value="#{persona.nombre}"/>
+                </p:column>
+                <p:column headerText="Cantidad de Asesinatos">
+                    <p:outputLabel value="#{persona.personasasesinadas}"/>
+                </p:column>
+                
+            </p:dataTable>
+            
+            <br></br>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{personaMB.persona.nombre}"/>
+                <p:outputLabel value="Edad"/>
+                <p:inputText value="#{personaMB.persona.edad}"/>
+                <p:outputLabel value="Cantidad de Personas Asesinadas"/>
+                <p:inputText value="#{personaMB.persona.personasasesinadas}"/>
+                <p:outputLabel value="Tipo de Asesinato"/>
+                <p:selectOneMenu value="#{personaMB.idtipoAsesinato}">
+                    <f:selectItems  value="#{tipoAsesinatoMB.tipoasesinatoList}" var="as" itemLabel="#{as.tipoasesinato}" itemValue="#{as.idasesinato}"/>
+                </p:selectOneMenu>
+                <h:commandButton value="Grabar" actionListener="#{personaMB.saveAsesinato()}"/>
+            </p:panelGrid>
+            
+            <br></br><br></br>
+            <p:dataTable var="persona" value="#{personaMB.personaList}" >
+                <f:facet name="header">
+                    Asesinos Projections
+                </f:facet>
+                <p:column headerText="Nombres">
+                    <p:outputLabel value="#{persona.nombre}"/>
+                </p:column>
+                <p:column headerText="Cantidad de Asesinatos">
+                    <p:outputLabel value="#{persona.personasasesinadas}"/>
+                </p:column>
+                
+            </p:dataTable>
+            
+            <br></br><br></br>
+            <p:dataTable var="persona" value="#{personaMB.personaList}" >
+                <f:facet name="header">
+                    Asesinos
+                </f:facet>
+                <p:column headerText="Codigo">
+                    <p:outputLabel value="#{persona.idasesino}"/>
+                </p:column>
+                <p:column headerText="Nombres">
+                    <p:outputLabel value="#{persona.nombre}"/>
+                </p:column>
+                <p:column headerText="Cantidad de Asesinatos">
+                    <p:outputLabel value="#{persona.personasasesinadas}"/>
+                </p:column>
+                
+            </p:dataTable>
+
+            <br></br><br></br>
+            <p:dataTable var="persona" value="#{personaMB.personaListOrder}" >
+                <f:facet name="header">
+                    Asesinos en Descendente
+                </f:facet>
+                <p:column headerText="Codigo">
+                    <p:outputLabel value="#{persona.idasesino}"/>
+                </p:column>
+                <p:column headerText="Nombres">
+                    <p:outputLabel value="#{persona.nombre}"/>
+                </p:column>
+                <p:column headerText="Cantidad de Asesinatos">
+                    <p:outputLabel value="#{persona.personasasesinadas}"/>
+                </p:column>
+            </p:dataTable>
+<br></br><br></br>
+            <p:dataTable var="persona" value="#{personaMB.personaListRestrictions}" >
+                <f:facet name="header">
+                    Asesinos Restriccion
+                </f:facet>
+                <p:column headerText="Codigo">
+                    <p:outputLabel value="#{persona.idasesino}"/>
+                </p:column>
+                <p:column headerText="Nombres">
+                    <p:outputLabel value="#{persona.nombre}"/>
+                </p:column>
+                <p:column headerText="Cantidad de Asesinatos">
+                    <p:outputLabel value="#{persona.personasasesinadas}"/>
+                </p:column>
+            </p:dataTable>
+
+
+
+            
+                
+                
+            
+
+        </h:form> 
+    </h:body>
+</html>
+
